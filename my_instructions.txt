@@ -1,0 +1,16 @@
+python2
+import skipthoughts
+model = skipthoughts.load_model() # huge part --> takes GB of memory
+encoder = skipthoughts.Encoder(model)
+import eval_trec
+reload(eval_trec) # if modifying the .py file
+clf = eval_trec.evaluate(encoder, evalcv=False, evaltest=True)
+eval_trec.predict("give me a bike please", encoder, clf)
+
+# creating my_test.label and my_train.label
+
+
+The training set will be generated from the wit.ai export
+
+Drawbacks:
+A lot of memory is required to keep the model

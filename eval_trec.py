@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
 
+from pprint import pprint
 
 def evaluate(encoder, k=10, seed=1234, evalcv=True, evaltest=False, loc='./data/'):
     """
@@ -24,7 +25,7 @@ def evaluate(encoder, k=10, seed=1234, evalcv=True, evaltest=False, loc='./data/
 
     print 'Computing training skipthoughts...'
     trainF = encoder.encode(train, verbose=False, use_eos=False)
-    
+
     if evalcv:
         print 'Running cross-validation...'
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
@@ -41,7 +42,17 @@ def evaluate(encoder, k=10, seed=1234, evalcv=True, evaltest=False, loc='./data/
         clf = LogisticRegression(C=C)
         clf.fit(trainF, train_labels)
         yhat = clf.predict(testF)
+
+        pprint(test_labels)
+        pprint(yhat)
+
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
+        return clf
+
+def predict(sentence, encoder, clf):
+    testF = encoder.encode([sentence], verbose=False, use_eos=False)
+    yhat = clf.predict(testF)
+    pprint(yhat)
 
 
 def load_data(loc='./data/'):
@@ -49,10 +60,10 @@ def load_data(loc='./data/'):
     Load the TREC question-type dataset
     """
     train, test = [], []
-    with open(os.path.join(loc, 'train_5500.label'), 'rb') as f:
+    with open(os.path.join(loc, 'my_train.label'), 'rb') as f:
         for line in f:
             train.append(line.strip())
-    with open(os.path.join(loc, 'TREC_10.label'), 'rb') as f:
+    with open(os.path.join(loc, 'my_test.label'), 'rb') as f:
         for line in f:
             test.append(line.strip())
     return train, test
@@ -119,4 +130,3 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
     s = scan[s_ind]
     print (s_ind, s)
     return s
-
