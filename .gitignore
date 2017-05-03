@@ -57,4 +57,6 @@ docs/_build/
 target/
 
 # Downloaded data files
-data/
+data/*
+!data/my_train.label
+!data/my_test.label

@@ -1,0 +1,21 @@
+FIND_B:x Give me a bike
+FIND_B:x I need a bike
+FIND_B:x Where can I get a bike
+FIND_B:x Where can I find a bike
+FIND_B:x Tell me where to find the bike
+FIND_B:x Tell me where is the nearest bike
+FIND_B:x I want you to find me a bike near piazza castello
+FIND_B:x I need a bike next to porta nuova
+FIND_S:x Where can I leave the bike
+FIND_S:x I need to park the bike
+FIND_S:x Find me a free slot
+FIND_S:x Tell me where to leave a bike
+FIND_S:x Tell me where is the nearest free slot
+FIND_S:x Find me where I can park a bike near piazza castello
+FIND_S:x I want a free slot next to porta nuova
+SET_POS:x I am at piazza castello
+SET_POS:x My position is next to porta nuova
+SET_POS:x Set my position in piazza vittorio
+GREET:x Hi
+GREET:x Hello
+GREET:x Hey
